@@ -1,6 +1,6 @@
 #include "cellsclasses.h" //файл с классами и конструктором
 #include "Headers.h"
-void renderCells(sf::RenderWindow& window, Cell cells[][40], int width, int height, float cellSize = 20.0f, float lineThickness = 2.0f)
+void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int height, float cellSize = 20.0f, float lineThickness = 2.0f)
 {
     for (int y = 0; y < height; ++y)
     {
@@ -43,7 +43,7 @@ void renderCells(sf::RenderWindow& window, Cell cells[][40], int width, int heig
         }
     }
 }
-void generatearray(Cell cells[][40], int width, int height)
+void generatearray(Cell cells[][30], int width, int height)
 {
     int startX = rand() % width;
     int startY = rand() % height;
