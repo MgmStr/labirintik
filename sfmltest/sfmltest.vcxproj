@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rendercells.cpp" />
+    <ClCompile Include="wavemaze.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cellsclasses.h" />

@@ -5,37 +5,8 @@ constexpr int Height = 30;
 
 void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int height, float cellSize = 20.0f, float lineThickness = 2.0f); //отрисовка лабиринта
 void generatearray(Cell cells[][30], int width, int height); //создание лабиринта
+std::vector<sf::Vector2i> findPath(Cell cells[][30], int width, int height, sf::Vector2i start, sf::Vector2i end);
 
-void moveant(sf::CircleShape& Ant, Cell cells[][30], int antcords[2], float cellSize = 20.0f)
-{
-    int antX = antcords[0];
-    int antY = antcords[1];
-    if (cells[antX][antY].Right == CellState::Open)
-            {
-                antcords[0]++;
-                Ant.move(sf::Vector2f(cellSize, 0));
-                return;
-            }       
-    else if (cells[antX][antY].Top == CellState::Open)
-    {
-        antcords[1]--;
-        Ant.move(sf::Vector2f(0, -cellSize));
-        return;
-    }
-    else if (cells[antX][antY].Left == CellState::Open)
-    {
-        antcords[0]--;
-        Ant.move(sf::Vector2f(-cellSize, 0));
-        return;
-    }
-    else if (cells[antX][antY].Bottom == CellState::Open)
-    {
-        antcords[1]++;
-        Ant.move(sf::Vector2f(0, cellSize));
-        return;
-    }
-            
-}
 
 int main()
 {
@@ -53,21 +24,12 @@ int main()
             cells[x][y].y = y;
         }
     }
-    //¬ыбираем первую €чейку откуда начнем движение
     srand(time(0));
     generatearray(cells, width, height); //создаЄм непосредственно лабиринт в массиве €чеек
-    int antcords[2] = { 0 };
-    antcords[0] = rand() % (width);
-    antcords[1] = rand() % (height);
-
+    Ant Ant;
     sf::RenderWindow window(sf::VideoMode({ width * cellSize, height * cellSize }), "Labirintio");
     window.setVerticalSyncEnabled(true);
-    sf::CircleShape Ant({ cellSize / 2 });
-    int antX = antcords[0]*cellSize;
-    int antY = antcords[1]*cellSize;
-    Ant.setPosition(sf::Vector2f(antX, antY));
-    Ant.setFillColor(sf::Color::Red);
-    window.setFramerateLimit(5);
+    window.setFramerateLimit(2);
         while (window.isOpen())
         {
             while (const std::optional event = window.pollEvent())
@@ -76,10 +38,15 @@ int main()
                 if (event->is<sf::Event::Closed>())
                     window.close();
             }
+            if (Ant.check() == false)
+            {
+                sf::Vector2i currentpos = { Ant.getX(), Ant.getY() };
+                sf::Vector2i Foodpos = { rand() % width, rand() % height };
+                Ant.setpath(findPath(cells, width, height, currentpos, Foodpos));
+                Ant.check() == true;
+            }
             window.clear(sf::Color::White);
-            renderCells(window, cells, width, height); //вызываем функцию отрисовки стенок лабиринта
-            moveant(Ant, cells, antcords);
-            window.draw(Ant);
+            renderCells(window, cells, width, height); //вызываем функцию отрисовки стенок лабиринт
             window.display();
         }
 }

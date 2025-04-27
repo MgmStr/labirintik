@@ -45,6 +45,7 @@ void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int heig
 }
 void generatearray(Cell cells[][30], int width, int height)
 {
+    //Выбираем первую ячейку откуда начнем движение
     int startX = rand() % width;
     int startY = rand() % height;
 
