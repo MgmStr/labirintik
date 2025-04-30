@@ -28,9 +28,13 @@ public:
     Ant (int start_x = 0, int start_y = 0): x(start_x), y(start_y), Satiety(false), findingFood(false), path() {}
     bool check()
     {
-        if (findingFood == false)
-            return false;
-        else return true;
+        return findingFood;
+    }
+    void plusStep(int step)
+    {
+        auto nextcord = path[step];
+        x = nextcord.x;
+        y = nextcord.y;
     }
     int getX()
     {
@@ -40,12 +44,16 @@ public:
     {
         return y;
     }
-    const std::vector<sf::Vector2i>& getPath() const 
-    { 
-        return path; 
-    }
     void setpath(std::vector<sf::Vector2i> path_p)
     {
         path = path_p;
+    }
+    void isFinding(bool state)
+    {
+        findingFood = state;
+    }
+    void isSatiety()
+    {
+        Satiety = true;
     }
 };
