@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FindingAlgorythm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rendercells.cpp" />
     <ClCompile Include="wavemaze.cpp" />

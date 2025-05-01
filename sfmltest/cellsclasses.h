@@ -26,7 +26,11 @@ private:
     bool findingFood;
 public:
     Ant (int start_x = 0, int start_y = 0): x(start_x), y(start_y), Satiety(false), findingFood(false), path() {}
-    bool check()
+    bool checkS()
+    {
+        return Satiety;
+    }
+    bool checkF()
     {
         return findingFood;
     }
@@ -52,8 +56,8 @@ public:
     {
         findingFood = state;
     }
-    void isSatiety()
+    void isHungry(bool state)
     {
-        Satiety = true;
+        Satiety = state;
     }
 };
