@@ -18,14 +18,16 @@ public:
 
 class Ant
 {
-private:
+protected:
     int x;
     int y;
     std::vector<sf::Vector2i> path;
     bool Satiety;
     bool findingFood;
+    sf::Vector2i Foodcords;
+    int step;
 public:
-    Ant (int start_x = 0, int start_y = 0): x(start_x), y(start_y), Satiety(false), findingFood(false), path() {}
+    Ant (int start_x = 0, int start_y = 0): x(start_x), y(start_y), Satiety(false), findingFood(false), path(), Foodcords({-1,-1}), step(0) {}
     bool checkS()
     {
         return Satiety;
@@ -34,11 +36,18 @@ public:
     {
         return findingFood;
     }
-    void plusStep(int step)
+    void plusStep()
     {
+        step++;
         auto nextcord = path[step];
         x = nextcord.x;
         y = nextcord.y;
+    }
+    void zeroStep()
+    {
+        step = 0;
+        findingFood = false;
+        Satiety = false;
     }
     int getX()
     {
@@ -60,4 +69,20 @@ public:
     {
         Satiety = state;
     }
+    sf::Vector2i Foodpos()
+    {
+        return Foodcords;
+    }
+    void Foodpos(int i, int y)
+    {
+        Foodcords = { i, y };
+    }
 };
+
+/*class Anthill
+{
+private:
+    Ant ant;
+    sf::RectangleShape entity;
+    sf::CircleShape Berry0;
+};*/
