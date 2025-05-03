@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-#include <SFML/Graphics.hpp>
+#include "Headers.h"
 enum CellState { Close, Open };
 class Cell
 {
@@ -53,6 +52,13 @@ public:
     {
         return x;
     }
+    float rotateChek()
+    {
+        float scalable = 2.0;
+        if ((step>0))
+        scalable = sqrt(pow((path[step + 1].x - path[step - 1].x), 2) + pow((path[step + 1].y - path[step - 1].y), 2));
+        return scalable;
+    }
     int getY()
     {
         return y;
@@ -78,11 +84,3 @@ public:
         Foodcords = { i, y };
     }
 };
-
-/*class Anthill
-{
-private:
-    Ant ant;
-    sf::RectangleShape entity;
-    sf::CircleShape Berry0;
-};*/

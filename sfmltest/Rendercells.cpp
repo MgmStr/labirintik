@@ -1,7 +1,8 @@
 #include "cellsclasses.h" //файл с классами и конструктором
 #include "Headers.h"
-void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int height, float cellSize = 20.0f, float lineThickness = 2.0f)
+void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int height, int cellSize = 20, int lineThickness = 2)
 {
+    sf::Texture grass("grasstexture.png");
     for (int y = 0; y < height; ++y)
     {
         for (int x = 0; x < width; ++x)
@@ -10,34 +11,34 @@ void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int heig
             if (cells[x][y].Top == CellState::Close)
             {
                 const sf::Vector2f cellPos(x * cellSize, y * cellSize); //приводим координаты к типу с которым может работать SFML
-                sf::RectangleShape line(sf::Vector2f(cellSize, lineThickness));
+                sf::Sprite line(grass);
+                line.setTextureRect(sf::IntRect({0,0}, {cellSize, lineThickness}));
                 line.setPosition(cellPos);
-                line.setFillColor(sf::Color::Black);
                 window.draw(line);
             }
             // Ћева€ граница
             if (cells[x][y].Left == CellState::Close)
             {
                 const sf::Vector2f cellPos(x * cellSize, y * cellSize); //приводим координаты к типу с которым может работать SFML
-                sf::RectangleShape line(sf::Vector2f(lineThickness, cellSize));
+                sf::Sprite line(grass);
+                line.setTextureRect(sf::IntRect({ 0, 0 }, { lineThickness, cellSize }));
                 line.setPosition(cellPos);
-                line.setFillColor(sf::Color::Black);
                 window.draw(line);
             }
             // ѕрава€ граница
             if (cells[x][y].Right == CellState::Close)
             {
-                sf::RectangleShape line(sf::Vector2f(lineThickness, cellSize));
+                sf::Sprite line(grass);
+                line.setTextureRect(sf::IntRect({ 0, 0 }, { lineThickness, cellSize }));
                 line.setPosition(sf::Vector2f((x + 1) * cellSize - lineThickness, y * cellSize));
-                line.setFillColor(sf::Color::Black);
                 window.draw(line);
             }
             // Ќижн€€ граница
             if (cells[x][y].Bottom == CellState::Close)
             {
-                sf::RectangleShape line(sf::Vector2f(cellSize, lineThickness));
+                sf::Sprite line(grass);
+                line.setTextureRect(sf::IntRect({ 0,0 }, { cellSize, lineThickness }));
                 line.setPosition(sf::Vector2f(x * cellSize, (y + 1) * cellSize - lineThickness));
-                line.setFillColor(sf::Color::Black);
                 window.draw(line);
             }
         }
