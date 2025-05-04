@@ -4,7 +4,7 @@ std::vector<sf::Vector2i> findPath(Cell cells[][30], int width, int height, sf::
 
 void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int height, short& count, sf::Sprite& ent, sf::Sprite& berry, float cellSize = 20.0f)
 {
-    if ((Ant.checkF() == false) && (Ant.checkS() == false)) //если голодный и не ищет едё, то получает путь
+    if ((Ant.checkF() == false) && (Ant.checkS() == false)) //если голодный и не ищет еду, то получает путь
     {
         sf::Vector2i currentpos = { Ant.getX(), Ant.getY() };
         Ant.Foodpos(rand() % width, rand() % height);

@@ -99,118 +99,43 @@ int main()
                 if (event->is<sf::Event::Closed>())
                     window.close();
             }
-
-            switch (AntsCount)
-            {
-            case 1:
+            if (AntsCount > 0)
             {
                 Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                break;
-            }
-            case 2:
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                break;
-            }
-            case 3:
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
-                break;
-            }
-            case 4:
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
-                Antmove(Ant3, Home, cells, width, height, AntsCount, entity3, Berry3);
-                break;
-            }
-            case 5:
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
-                Antmove(Ant3, Home, cells, width, height, AntsCount, entity3, Berry3);
-                Antmove(Ant4, Home, cells, width, height, AntsCount, entity4, Berry4);
-                break;
-            }
-            case 6:
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
-                Antmove(Ant3, Home, cells, width, height, AntsCount, entity3, Berry3);
-                Antmove(Ant4, Home, cells, width, height, AntsCount, entity4, Berry4);
-                Antmove(Ant5, Home, cells, width, height, AntsCount, entity5, Berry5);
-                break;
-            }
-            case 7:
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
-                Antmove(Ant3, Home, cells, width, height, AntsCount, entity3, Berry3);
-                Antmove(Ant4, Home, cells, width, height, AntsCount, entity4, Berry4);
-                Antmove(Ant5, Home, cells, width, height, AntsCount, entity5, Berry5);
-                Antmove(Ant6, Home, cells, width, height, AntsCount, entity6, Berry6);
-                break;
-            }
-            case 8:
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
-                Antmove(Ant3, Home, cells, width, height, AntsCount, entity3, Berry3);
-                Antmove(Ant4, Home, cells, width, height, AntsCount, entity4, Berry4);
-                Antmove(Ant5, Home, cells, width, height, AntsCount, entity5, Berry5);
-                Antmove(Ant6, Home, cells, width, height, AntsCount, entity6, Berry6);
-                Antmove(Ant7, Home, cells, width, height, AntsCount, entity7, Berry7);
-                break;
-            }
-            case 9:
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
-                Antmove(Ant3, Home, cells, width, height, AntsCount, entity3, Berry3);
-                Antmove(Ant4, Home, cells, width, height, AntsCount, entity4, Berry4);
-                Antmove(Ant5, Home, cells, width, height, AntsCount, entity5, Berry5);
-                Antmove(Ant6, Home, cells, width, height, AntsCount, entity6, Berry6);
-                Antmove(Ant7, Home, cells, width, height, AntsCount, entity7, Berry7);
-                Antmove(Ant8, Home, cells, width, height, AntsCount, entity8, Berry8);
-                break;
-            }
-            case 10:
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
-                Antmove(Ant3, Home, cells, width, height, AntsCount, entity3, Berry3);
-                Antmove(Ant4, Home, cells, width, height, AntsCount, entity4, Berry4);
-                Antmove(Ant5, Home, cells, width, height, AntsCount, entity5, Berry5);
-                Antmove(Ant6, Home, cells, width, height, AntsCount, entity6, Berry6);
-                Antmove(Ant7, Home, cells, width, height, AntsCount, entity7, Berry7);
-                Antmove(Ant8, Home, cells, width, height, AntsCount, entity8, Berry8);
-                Antmove(Ant9, Home, cells, width, height, AntsCount, entity9, Berry9);
-                break;
-            }
-            default: 
-            {
-                Antmove(Ant0, Home, cells, width, height, AntsCount, entity0, Berry0);
-                Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
-                Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
-                Antmove(Ant3, Home, cells, width, height, AntsCount, entity3, Berry3);
-                Antmove(Ant4, Home, cells, width, height, AntsCount, entity4, Berry4);
-                Antmove(Ant5, Home, cells, width, height, AntsCount, entity5, Berry5);
-                Antmove(Ant6, Home, cells, width, height, AntsCount, entity6, Berry6);
-                Antmove(Ant7, Home, cells, width, height, AntsCount, entity7, Berry7);
-                Antmove(Ant8, Home, cells, width, height, AntsCount, entity8, Berry8);
-                Antmove(Ant9, Home, cells, width, height, AntsCount, entity9, Berry9);
-                break;
-            }
+                if (AntsCount > 1)
+                {
+                    Antmove(Ant1, Home, cells, width, height, AntsCount, entity1, Berry1);
+                    if (AntsCount > 2)
+                    {
+                        Antmove(Ant2, Home, cells, width, height, AntsCount, entity2, Berry2);
+                        if (AntsCount > 3)
+                        {
+                            Antmove(Ant3, Home, cells, width, height, AntsCount, entity3, Berry3);
+                            if (AntsCount > 4)
+                            {
+                                Antmove(Ant4, Home, cells, width, height, AntsCount, entity4, Berry4);
+                                if (AntsCount > 5)
+                                {
+                                    Antmove(Ant5, Home, cells, width, height, AntsCount, entity5, Berry5);
+                                    if (AntsCount > 6)
+                                    {
+                                        Antmove(Ant6, Home, cells, width, height, AntsCount, entity6, Berry6);
+                                        if (AntsCount > 7)
+                                        {
+                                            Antmove(Ant7, Home, cells, width, height, AntsCount, entity7, Berry7);
+                                            if (AntsCount > 8)
+                                            {
+                                                Antmove(Ant8, Home, cells, width, height, AntsCount, entity8, Berry8);
+                                                if (AntsCount>9)
+                                                    Antmove(Ant9, Home, cells, width, height, AntsCount, entity9, Berry9);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
             window.clear(sf::Color::White);
             window.draw(background);
