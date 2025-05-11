@@ -17,7 +17,7 @@ public:
 
 class Ant
 {
-protected:
+private:
     int x;
     int y;
     std::vector<sf::Vector2i> path;
@@ -26,7 +26,8 @@ protected:
     sf::Vector2i Foodcords;
     int step;
 public:
-    Ant (int start_x = 0, int start_y = 0): x(start_x), y(start_y), Satiety(false), findingFood(false), path(), Foodcords({-1,-1}), step(0) {}
+    sf::Sprite entity;
+    Ant (sf::Sprite p_entity): x(0), y(0), Satiety(false), findingFood(false), path(), Foodcords({-1,-1}), step(0), entity(p_entity){}
     bool checkS()
     {
         return Satiety;
@@ -82,5 +83,14 @@ public:
     void Foodpos(int i, int y)
     {
         Foodcords = { i, y };
+    }
+};
+
+struct Food
+{
+    sf::Sprite berry;
+    Food(sf::Sprite p_berry):berry(p_berry)
+    {
+        berry.setTextureRect(sf::IntRect({ 0,0 }, { 18, 18 }));
     }
 };

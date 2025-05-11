@@ -2,7 +2,7 @@
 #include "cellsclasses.h"
 std::vector<sf::Vector2i> findPath(Cell cells[][30], int width, int height, sf::Vector2i start, sf::Vector2i end);//функция поиска пути
 
-void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int height, short& count, sf::Sprite& ent, sf::Sprite& berry, float cellSize = 20.0f)
+void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int height, unsigned int& count, sf::Sprite& ent, sf::Sprite& berry, float cellSize = 20.0f)
 {
     if ((Ant.checkF() == false) && (Ant.checkS() == false)) //если голодный и не ищет еду, то получает путь
     {
