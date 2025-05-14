@@ -4,14 +4,14 @@ constexpr int Height = 30;
 
 void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int height, int cellSize = 20, int lineThickness = 2); //отрисовка лабиринта
 void generatearray(Cell cells[][30], int width, int height); //создание лабиринта
-void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int height, unsigned int& count, sf::Sprite& ent, sf::Sprite& berry, float cellSize = 20.0f); //логика движения
-void initAnt(Ant Ant, sf::Sprite& mob, int cellSize = 20);//инициализация спрайтов
+void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int height, int& count, sf::Sprite& ent, sf::Sprite& berry, float cellSize = 20.0f); //логика движения
+void initAnt(Cell cells[][30], Ant Ant, sf::Sprite& mob, int cellSize = 20);//инициализация спрайтов
 
 int main()
 {
     const int cellSize = 20;
     const int width = 40, height = Height; //размер поля(в количестве ячеек)
-    const int maximum = 10;
+    const int maximum = 20;
 
     Cell cells[width][height];
 
@@ -30,13 +30,15 @@ int main()
     sf::Texture chernika("blueberry.png");
     //инициализируем все потенциальные объекты;
     sf::Sprite entity(redAnt);
-    Ant ants[maximum] = {entity, entity, entity, entity, entity, entity, entity, entity, entity, entity};
+    Ant ants[maximum] = {entity, entity, entity, entity, entity, entity, entity, entity, entity, 
+        entity, entity, entity, entity, entity, entity, entity, entity, entity, entity, entity };
     for (int i = 0; i < maximum; i++)
     {
-        initAnt(ants[i], ants[i].entity);
+        initAnt(cells, ants[i], ants[i].entity);
     }
     sf::Sprite Berry(chernika);
-    Food Berryies[maximum] = { Berry, Berry, Berry, Berry, Berry, Berry, Berry, Berry, Berry, Berry };
+    Food Berryies[maximum] = { Berry, Berry, Berry, Berry, Berry, Berry, Berry, Berry, Berry, Berry,
+        Berry, Berry, Berry, Berry, Berry, Berry, Berry, Berry, Berry, Berry };
     sf::Vector2i Home = { 0,0 };
     //текстура фона
     sf::Texture ground("background.png");
@@ -44,9 +46,9 @@ int main()
     background.setTextureRect(sf::IntRect({ 0, 0 }, { width*cellSize, height*cellSize }));
     sf::Texture hometexture("hole.png");
     sf::Sprite anthill(hometexture);
-    anthill.setTextureRect(sf::IntRect({ 0, 0 }, {2 * cellSize, 2 * cellSize }));
+    anthill.setTextureRect(sf::IntRect({ 0, 0 }, {2 * cellSize+3, 2 * cellSize +3}));
     sf::RenderWindow window(sf::VideoMode({ width * cellSize, height * cellSize }), "Labirintio");
-    unsigned int AntsCount = 1;
+    int AntsCount = 1;
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(10);
         while (window.isOpen())
@@ -72,7 +74,7 @@ int main()
                     window.draw(Berryies[i].berry);
                 }
             renderCells(window, cells, width, height); //вызываем функцию отрисовки стенок лабиринт
-            //window.draw(anthill);
+            window.draw(anthill);
             window.display();
         }
 }

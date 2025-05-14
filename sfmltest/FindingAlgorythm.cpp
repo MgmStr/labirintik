@@ -2,7 +2,7 @@
 #include "cellsclasses.h"
 std::vector<sf::Vector2i> findPath(Cell cells[][30], int width, int height, sf::Vector2i start, sf::Vector2i end);//функция поиска пути
 
-void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int height, unsigned int& count, sf::Sprite& ent, sf::Sprite& berry, float cellSize = 20.0f)
+void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int height, int& count, sf::Sprite& ent, sf::Sprite& berry, float cellSize = 20.0f)
 {
     if ((Ant.checkF() == false) && (Ant.checkS() == false)) //если голодный и не ищет еду, то получает путь
     {
@@ -10,6 +10,7 @@ void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int heig
         Ant.Foodpos(rand() % width, rand() % height);
         Ant.setpath(findPath(cells, width, height, currentpos, Ant.Foodpos()));
         Ant.isFinding(true);
+        Ant.checkNew();
     }
     Ant.plusStep();
     if ((Ant.getX() == Ant.Foodpos().x) && (Ant.getY() == Ant.Foodpos().y)) //если сыт, возвращается домой
@@ -34,10 +35,9 @@ void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int heig
         ent.rotate(sf::degrees(-90));
     return;
 }
-void initAnt(Ant Ant, sf::Sprite& mob, int cellSize = 20)
+void initAnt(Cell cells[][30], Ant Ant, sf::Sprite& mob, int cellSize = 20)
 {
     mob.setTextureRect(sf::IntRect({ 0,0 }, { cellSize - 5, cellSize }));
     mob.setPosition(sf::Vector2f(Ant.getX() * cellSize, Ant.getY() * cellSize));
     mob.setOrigin({ 7.5f, 10.0f });
-    mob.setRotation(sf::degrees(90));
 }

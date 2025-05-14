@@ -25,9 +25,10 @@ private:
     bool findingFood;
     sf::Vector2i Foodcords;
     int step;
+    bool newBorn;
 public:
     sf::Sprite entity;
-    Ant (sf::Sprite p_entity): x(0), y(0), Satiety(false), findingFood(false), path(), Foodcords({-1,-1}), step(0), entity(p_entity){}
+    Ant (sf::Sprite p_entity): x(0), y(0), Satiety(false), findingFood(false), path(), Foodcords({-1,-1}), step(0), entity(p_entity), newBorn(true){}
     bool checkS()
     {
         return Satiety;
@@ -35,6 +36,20 @@ public:
     bool checkF()
     {
         return findingFood;
+    }
+    void checkNew()
+    {
+        if ((newBorn == true) && (path[1].x == 1))
+        {
+            newBorn = false;
+            entity.rotate(sf::degrees(90));
+        }
+        else if ((newBorn == true) && (path[1].y == 1))
+        {
+            newBorn = false;
+            entity.rotate(sf::degrees(180));
+        }
+        else return;
     }
     void plusStep()
     {
