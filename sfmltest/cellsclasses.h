@@ -29,6 +29,9 @@ private:
 public:
     sf::Sprite entity;
     Ant (sf::Sprite p_entity): x(0), y(0), Satiety(false), findingFood(false), path(), Foodcords({-1,-1}), step(0), entity(p_entity), newBorn(true){}
+    void checkNew();
+    void plusStep();
+    void zeroStep();
     bool checkS()
     {
         return Satiety;
@@ -37,44 +40,12 @@ public:
     {
         return findingFood;
     }
-    void checkNew()
-    {
-        if ((newBorn == true) && (path[1].x == 1))
-        {
-            newBorn = false;
-            entity.rotate(sf::degrees(90));
-        }
-        else if ((newBorn == true) && (path[1].y == 1))
-        {
-            newBorn = false;
-            entity.rotate(sf::degrees(180));
-        }
-        else return;
-    }
-    void plusStep()
-    {
-        step++;
-        auto nextcord = path[step];
-        x = nextcord.x;
-        y = nextcord.y;
-    }
-    void zeroStep()
-    {
-        step = 0;
-        findingFood = false;
-        Satiety = false;
-    }
     int getX()
     {
         return x;
     }
-    float rotateChek()
-    {
-        float scalable = 2.0;
-        if ((step>0))
-        scalable = sqrt(pow((path[step + 1].x - path[step - 1].x), 2) + pow((path[step + 1].y - path[step - 1].y), 2));
-        return scalable;
-    }
+    float rotateChek();
+    
     int getY()
     {
         return y;

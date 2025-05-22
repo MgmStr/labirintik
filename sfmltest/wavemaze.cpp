@@ -1,6 +1,5 @@
-#include "cellsclasses.h" //файл с классами и конструктором
 #include "Headers.h"
-#include <queue>
+
 
 std::vector<std::vector<bool>> mazeToGrid(Cell cells[][30], int width, int height) 
 {

@@ -1,7 +1,8 @@
-#include "cellsclasses.h" //файл с классами и конструктором
 #include "Headers.h"
-void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int height, int cellSize = 20, int lineThickness = 2)
+void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int height)
 {
+    int cellSize = 20;
+    int lineThickness = 2;
     sf::Texture grass("grasstexture.png");
     for (int y = 0; y < height; ++y)
     {

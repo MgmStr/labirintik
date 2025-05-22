@@ -1,16 +1,9 @@
 #include "Headers.h"
-#include "cellsclasses.h"
-constexpr int Height = 30;
-
-void renderCells(sf::RenderWindow& window, Cell cells[][30], int width, int height, int cellSize = 20, int lineThickness = 2); //отрисовка лабиринта
-void generatearray(Cell cells[][30], int width, int height); //создание лабиринта
-void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int height, int& count, sf::Sprite& ent, sf::Sprite& berry, float cellSize = 20.0f); //логика движения
-void initAnt(Cell cells[][30], Ant Ant, sf::Sprite& mob, int cellSize = 20);//инициализация спрайтов
 
 int main()
 {
     const int cellSize = 20;
-    const int width = 40, height = Height; //размер поля(в количестве ячеек)
+    const int width = 40, height = 30; //размер поля(в количестве ячеек)
     const int maximum = 20;
 
     Cell cells[width][height];

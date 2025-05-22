@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cellsclasses.cpp" />
     <ClCompile Include="FindingAlgorythm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rendercells.cpp" />
