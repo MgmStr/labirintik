@@ -3,8 +3,8 @@
 int main()
 {
     const int cellSize = 20;
-    const int width = 40, height = 30; //размер пол€(в количестве €чеек)
-    const int maximum = 20;
+    const int width = 60, height = 40; //размер пол€(в количестве €чеек)
+    const int maximum = 20; //максимальное значение муравьЄв/€год
 
     Cell cells[width][height];
 
@@ -23,8 +23,8 @@ int main()
     sf::Texture chernika("blueberry.png");
     //инициализируем все потенциальные объекты;
     sf::Sprite entity(redAnt);
-    Ant ants[maximum] = {entity, entity, entity, entity, entity, entity, entity, entity, entity, 
-        entity, entity, entity, entity, entity, entity, entity, entity, entity, entity, entity };
+    Ant ants[maximum] = { entity, entity, entity, entity, entity, entity, entity, entity, entity,
+        entity, entity, entity, entity, entity, entity, entity, entity, entity, entity, entity };;
     for (int i = 0; i < maximum; i++)
     {
         initAnt(cells, ants[i], ants[i].entity);

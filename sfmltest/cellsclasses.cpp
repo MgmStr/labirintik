@@ -39,3 +39,4 @@ float Ant::rotateChek()
         scalable = sqrt(pow((path[step + 1].x - path[step - 1].x), 2) + pow((path[step + 1].y - path[step - 1].y), 2));
     return scalable;
 }
+

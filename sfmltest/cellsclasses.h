@@ -28,10 +28,11 @@ private:
     bool newBorn;
 public:
     sf::Sprite entity;
-    Ant (sf::Sprite p_entity): x(0), y(0), Satiety(false), findingFood(false), path(), Foodcords({-1,-1}), step(0), entity(p_entity), newBorn(true){}
+    Ant(sf::Sprite p_ent) : x(0), y(0), Satiety(false), findingFood(false), path(), Foodcords({ -1,-1 }), step(0), newBorn(true), entity(p_ent) {}
     void checkNew();
     void plusStep();
     void zeroStep();
+    float rotateChek();
     bool checkS()
     {
         return Satiety;
@@ -44,8 +45,6 @@ public:
     {
         return x;
     }
-    float rotateChek();
-    
     int getY()
     {
         return y;

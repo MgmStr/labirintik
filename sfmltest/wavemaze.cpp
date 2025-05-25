@@ -1,7 +1,7 @@
 #include "Headers.h"
 
 
-std::vector<std::vector<bool>> mazeToGrid(Cell cells[][30], int width, int height) 
+std::vector<std::vector<bool>> mazeToGrid(Cell cells[][40], int width, int height) 
 {
     std::vector<std::vector<bool>> grid(height * 2 + 1, std::vector<bool>(width * 2 + 1, false));
     for (int y = 0; y < height; ++y) {
@@ -24,7 +24,7 @@ std::vector<std::vector<bool>> mazeToGrid(Cell cells[][30], int width, int heigh
     return grid;
 }
 
-std::vector<sf::Vector2i> findPath(Cell cells[][30], int width, int height, sf::Vector2i start, sf::Vector2i end) 
+std::vector<sf::Vector2i> findPath(Cell cells[][40], int width, int height, sf::Vector2i start, sf::Vector2i end) 
 {
     // Преобразуем лабиринт в сетку
     auto grid = mazeToGrid(cells, width, height);

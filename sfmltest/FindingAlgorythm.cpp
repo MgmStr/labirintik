@@ -1,6 +1,6 @@
 #include "Headers.h"
 
-void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int height, int& count, sf::Sprite& ent, sf::Sprite& berry)
+void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][40], int width, int height, int& count, sf::Sprite& ent, sf::Sprite& berry)
 {
     float cellSize = 20.0f;
     if ((Ant.checkF() == false) && (Ant.checkS() == false)) //если голодный и не ищет еду, то получает путь
@@ -31,7 +31,7 @@ void Antmove(Ant& Ant, sf::Vector2i& home, Cell cells[][30], int width, int heig
     if (Ant.rotateChek() < 2)
         ent.rotate(sf::degrees(90));
 }
-void initAnt(Cell cells[][30], Ant Ant, sf::Sprite& mob)
+void initAnt(Cell cells[][40], Ant Ant, sf::Sprite& mob)
 {
     int cellSize = 20;
     mob.setTextureRect(sf::IntRect({ 0,0 }, { cellSize - 5, cellSize }));
