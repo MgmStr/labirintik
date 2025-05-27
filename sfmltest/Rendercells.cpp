@@ -113,22 +113,4 @@ void generatearray(Cell cells[][40], int width, int height)
             path.pop();
         }
     }
-    for (int i = (width / 2 - 5); i < width / 2 + 5; i++)
-    {
-        for (int j = (height / 2 - 5); j < height / 2 + 5; j++)
-        {
-            cells[i][j].Bottom = CellState::Open;
-            cells[i][j].Top = CellState::Open;
-            cells[i][j].Left = CellState::Open;
-            cells[i][j].Right = CellState::Open;
-            if (cells[i][height / 2 - 6].Bottom == CellState::Close)
-                cells[i][height / 2 - 5].Top = CellState::Close;
-            if (cells[i][height / 2 + 5].Top == CellState::Close)
-                cells[i][height / 2 + 4].Bottom = CellState::Close;
-            if (cells[width / 2 - 6][j].Right == CellState::Close)
-                cells[width / 2 - 5][j].Left = CellState::Close;
-            if (cells[width / 2 + 5][j].Left == CellState::Close)
-                cells[width / 2 + 4][j].Right = CellState::Close;
-        }
-    }
 }

@@ -39,6 +39,13 @@ int main()
     background.setTextureRect(sf::IntRect({ 0, 0 }, { width*cellSize, height*cellSize }));
     sf::Texture hometexture("hole.png");
     sf::Sprite anthill(hometexture);
+    sf::Texture yellow("yellow.png");
+    sf::Sprite badass(yellow);
+    BadAnt enemyies[5] = { badass, badass, badass, badass, badass };
+    for (int i = 0; i < 5; i++)
+    {
+        initAnt(cells, enemyies[i]);
+    }
     anthill.setTextureRect(sf::IntRect({ 0, 0 }, {2 * cellSize+3, 2 * cellSize +3}));
     sf::RenderWindow window(sf::VideoMode({ width * cellSize, height * cellSize }), "Labirintio");
     int AntsCount = 1;
@@ -55,7 +62,7 @@ int main()
             for (int i = 0; i < AntsCount; i++)
             {
                 if (AntsCount <= maximum)
-                    Antmove(ants[i], Home, cells, width, height, AntsCount, ants[i].entity, Berryies[i].berry);
+                    Antmove(ants[i], Home, cells, width, height, AntsCount, Berryies[i].berry);
                 else AntsCount = maximum;
             }
             window.clear(sf::Color::White);
@@ -66,6 +73,9 @@ int main()
                     window.draw(ants[i].entity); 
                     window.draw(Berryies[i].berry);
                 }
+            War(ants, enemyies, cells, width, height, AntsCount, Home);
+            for (int i = 0; i < 5; i++)
+                window.draw(enemyies[i].entity);
             renderCells(window, cells, width, height); //вызываем функцию отрисовки стенок лабиринт
             window.draw(anthill);
             window.display();

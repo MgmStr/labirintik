@@ -26,13 +26,26 @@ private:
     sf::Vector2i Foodcords;
     int step;
     bool newBorn;
+    int angle;
 public:
     sf::Sprite entity;
-    Ant(sf::Sprite p_ent) : x(0), y(0), Satiety(false), findingFood(false), path(), Foodcords({ -1,-1 }), step(0), newBorn(true), entity(p_ent) {}
+    Ant(sf::Sprite p_ent) : x(0), y(0), Satiety(false), findingFood(false), path(), Foodcords({ -1,-1 }), step(0), newBorn(true), entity(p_ent), angle(0) {}
     void checkNew();
     void plusStep();
     void zeroStep();
     float rotateChek();
+    int plus90()
+    {
+        angle += 90;
+        return angle;
+    }
+    void moveTo(int p_x, int p_y)
+    {
+        x = p_x;
+        y = p_y;
+        angle = 0;
+        newBorn = true;
+    }
     bool checkS()
     {
         return Satiety;
@@ -78,4 +91,48 @@ struct Food
     {
         berry.setTextureRect(sf::IntRect({ 0,0 }, { 18, 18 }));
     }
+};
+
+class BadAnt
+{
+private:
+    int x;
+    int y;
+    std::vector<sf::Vector2i> path;
+    int step;
+    bool newBorn;
+    bool hunting;
+    int angle;
+public:
+    sf::Sprite entity;
+    BadAnt(sf::Sprite p_ent) : x(59), y(39), entity(p_ent), step(0), newBorn(true), hunting(false), angle(0) {}
+    void plusStep();
+    int plus90()
+    {
+        angle += 90;
+        return angle;
+    }
+    int getX()
+    {
+        return x;
+    }
+    int getY()
+    {
+        return y;
+    }
+    void setpath(std::vector<sf::Vector2i> path_p)
+    {
+        path = path_p;
+    }
+    void isHunting(bool state)
+    {
+        hunting = state;
+    }
+    bool checkH()
+    {
+        return hunting;
+    }
+    void goHome();
+    void checkNew();
+    float rotateChek();
 };
