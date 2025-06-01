@@ -40,6 +40,14 @@ float Ant::rotateChek()
     return scalable;
 }
 
+void Ant::moveTo(int p_x, int p_y)
+{
+    x = p_x;
+    y = p_y;
+    newBorn = true;
+    entity.setRotation(sf::degrees(0));
+}
+
 void BadAnt::plusStep()
 {
     step++;
@@ -54,8 +62,8 @@ void BadAnt::goHome()
     y = 39;
     hunting = false;
     step = 0;
-    angle = 0;
     newBorn = true;
+    entity.setRotation(sf::degrees(0));
 }
 
 void BadAnt::checkNew()

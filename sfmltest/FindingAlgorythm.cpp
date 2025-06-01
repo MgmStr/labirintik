@@ -30,18 +30,17 @@ void Antmove(Ant& Ant, sf::Vector2i home, Cell cells[][40], int width, int heigh
     Ant.entity.setPosition(sf::Vector2f(7.5 + Ant.getX() * cellSize + 5 / 2, 10.0 + Ant.getY() * cellSize + 5 / 2));
     if (Ant.rotateChek() < 2)
     {
-        Ant.plus90();
         Ant.entity.rotate(sf::degrees(90));
     }
 }
-void initAnt(Cell cells[][40], Ant Ant, sf::Sprite& mob)
+void initAnt(Ant& Ant)
 {
     int cellSize = 20;
-    mob.setTextureRect(sf::IntRect({ 0,0 }, { cellSize - 5, cellSize }));
-    mob.setPosition(sf::Vector2f(Ant.getX() * cellSize, Ant.getY() * cellSize));
-    mob.setOrigin({ 7.5f, 10.0f });
+    Ant.entity.setTextureRect(sf::IntRect({ 0,0 }, { cellSize - 5, cellSize }));
+    Ant.entity.setPosition(sf::Vector2f(Ant.getX() * cellSize, Ant.getY() * cellSize));
+    Ant.entity.setOrigin({ 7.5f, 10.0f });
 }
-void initAnt(Cell cells[][40], BadAnt& Ant)
+void initAnt(BadAnt& Ant)
 {
     int cellSize = 20;
     Ant.entity.setTextureRect(sf::IntRect({ 0,0 }, { cellSize - 5, cellSize }));
@@ -49,9 +48,9 @@ void initAnt(Cell cells[][40], BadAnt& Ant)
     Ant.entity.setOrigin({ 7.5f, 10.0f });
 }
 
-void War(Ant ants[], BadAnt enemyies[], Cell cells[][40], int width, int height, int& count, sf::Vector2i home)
+void War(sf::RenderWindow& window, Ant ants[], BadAnt enemyies[], Cell cells[][40], int width, int height, int& count, sf::Vector2i home)
 {
-    float cellSize = 20.0f;
+    int cellSize = 20.0f;
     if (count >= 20)
     {
         sf::Vector2i corner = { (width-1),(height-1)};
@@ -71,23 +70,29 @@ void War(Ant ants[], BadAnt enemyies[], Cell cells[][40], int width, int height,
         {
             for (int n = 0; n < count; n++)
             {
-                if ((ants[n].getX() == enemyies[i].getX()) && (ants[n].getY() == enemyies[i].getY()))
+                if ((ants[n].getX() == enemyies[i].getX()) && (ants[n].getY() == enemyies[i].getY()) || ((ants[n].getX() == enemyies[i].checkNext().x) && (ants[n].getY() == enemyies[i].checkNext().y)))
                 {
                     ants[n].zeroStep();
                     ants[n].moveTo(0, 0);
-                    ants[n].entity.rotate(sf::degrees(-ants[n].plus90()));
                     count--;
                     enemyies[i].goHome();
-                    enemyies[i].entity.rotate(sf::degrees(-enemyies[n].plus90()));
                 }
             }
             enemyies[i].plusStep();
             enemyies[i].entity.setPosition(sf::Vector2f(7.5 + enemyies[i].getX() * cellSize + 5 / 2, 10.0 + enemyies[i].getY() * cellSize + 5 / 2));
             if (enemyies[i].rotateChek() < 2)
             {
-                enemyies[i].plus90();
                 enemyies[i].entity.rotate(sf::degrees(90));
             }
+        }
+        if ((enemyies[i].getX()==home.x) && (enemyies[i].getY() == home.x))
+        {
+            sf::Texture end("end.png");
+            sf::Sprite SOD(end);
+            SOD.setTextureRect(sf::IntRect({ 0,0 }, { width * cellSize, height * cellSize }));
+            window.draw(SOD);
+            window.setFramerateLimit(0);
+            return;
         }
     }
 }
